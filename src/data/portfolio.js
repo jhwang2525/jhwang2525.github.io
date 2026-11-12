@@ -12,6 +12,8 @@ import form from '../assets/projects/form.jpg';
 import tracker from '../assets/projects/tracker.jpg';
 import taskinator from '../assets/projects/taskinator.jpg';
 import landingpage from '../assets/projects/landingpage.jpg';
+import weather from '../assets/projects/weather.jpg';
+import techblog from '../assets/projects/techblog.jpg';
 import linehop from '../assets/projects/linehop.png';
 import fitness from '../assets/projects/fitness.png';
 
@@ -24,6 +26,7 @@ export const profile = {
   email: 'jhwang2525@gmail.com',
   github: GH,
   linkedin: 'https://www.linkedin.com/in/jun-hwang-834951207/',
+  availability: 'Open to freelance projects & full-time roles',
   headline: 'I build Shopify storefronts that sell.',
   intro:
     "I'm a Los Angeles based Shopify developer and front-end engineer. I build custom Liquid themes, wholesale and B2B storefronts, and fast, conversion-focused UI for fashion and lifestyle brands.",
@@ -38,6 +41,21 @@ export const stats = [
 export const about = [
   "I started on the business side of e-commerce, watching analytics, running promotions and figuring out why shoppers didn't convert. That curiosity pulled me into code: I completed UCLA's Full-Stack Web Development program and Google's UX Design Specialization, and I've been building storefronts ever since.",
   "Today I run a small Shopify development practice. I work directly with brand owners on everything from new theme builds on Horizon and Dawn to wholesale pricing, B2B checkout flows, custom sections and performance fixes. I care about clean, maintainable code that the client's team can still edit in the theme editor.",
+];
+
+export const services = [
+  {
+    title: 'Shopify Development',
+    text: 'Custom themes on Horizon and Dawn, Liquid sections the client can edit, wholesale and B2B setups, store migrations and app integrations.',
+  },
+  {
+    title: 'Front-End Engineering',
+    text: 'Fast, accessible, responsive interfaces in JavaScript and React, with attention to Core Web Vitals and clean, maintainable code.',
+  },
+  {
+    title: 'UX & UI Design',
+    text: 'Research, wireframes and polished UI in Figma, then built pixel-accurate so the design and the shipped product match.',
+  },
 ];
 
 export const skills = [
@@ -192,6 +210,54 @@ export const projectFilters = ['All', 'Shopify', 'Full-Stack', 'Front-End'];
 
 export const projects = [
   {
+    name: 'Budget Tracker',
+    category: 'Full-Stack',
+    featured: true,
+    image: tracker,
+    description:
+      'Offline-first PWA for tracking income and expenses. A service worker caches the app, offline entries are stored in IndexedDB and bulk-synced to MongoDB when the connection returns.',
+    tags: ['PWA', 'Service Worker', 'IndexedDB', 'Express', 'MongoDB', 'Chart.js'],
+    code: `${GH}/budget-tracker`,
+  },
+  {
+    name: 'Weather Dashboard',
+    category: 'Front-End',
+    featured: true,
+    image: weather,
+    description:
+      'Search any city for current conditions and a 5-day forecast, with color-coded UV index and saved search history. Uses the keyless Open-Meteo APIs, so it runs safely on GitHub Pages.',
+    tags: ['JavaScript', 'REST APIs', 'Async/Await', 'localStorage'],
+    demo: 'https://jhwang2525.github.io/weather-dashboard/',
+    code: `${GH}/weather-dashboard`,
+  },
+  {
+    name: 'The Tech Blog',
+    category: 'Full-Stack',
+    featured: true,
+    image: techblog,
+    description:
+      'CMS-style blog with sign-up, sessions, a post dashboard and comments. MVC architecture with protected routes and hashed passwords.',
+    tags: ['Node.js', 'Express', 'Handlebars', 'Sequelize', 'MySQL', 'bcrypt'],
+    code: `${GH}/tech-blog`,
+  },
+  {
+    name: 'Taskinator',
+    category: 'Front-End',
+    image: taskinator,
+    description: 'Kanban task board with drag and drop, editing, live column counts and persistence in the browser.',
+    tags: ['JavaScript', 'Drag & Drop API', 'localStorage'],
+    demo: 'https://jhwang2525.github.io/taskinator/',
+    code: `${GH}/taskinator`,
+  },
+  {
+    name: 'Note Taker',
+    category: 'Full-Stack',
+    image: note,
+    description: 'Two-pane notes app with search, editing and keyboard shortcuts, backed by a validated Express REST API.',
+    tags: ['Node.js', 'Express', 'REST API', 'JavaScript'],
+    code: `${GH}/note-taker`,
+  },
+  {
     name: 'LaunchAI',
     category: 'Full-Stack',
     status: 'In progress',
@@ -209,20 +275,38 @@ export const projects = [
     code: `${GH}/ASI-Catalog`,
   },
   {
-    name: 'Book Search Engine',
-    category: 'Full-Stack',
-    description:
-      'Google Books search app where users sign up, log in and save books to their account. Refactored from REST to a GraphQL API.',
-    tags: ['MongoDB', 'Express', 'GraphQL', 'Apollo', 'JWT'],
-    code: `${GH}/book-search-engine`,
+    name: 'Progress Steps',
+    category: 'Front-End',
+    image: progress,
+    description: 'Reusable stepper component shown as a four-step checkout, with animated progress, keyboard support and ARIA states.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Accessibility'],
+    demo: 'https://jhwang2525.github.io/progress-steps/',
+    code: `${GH}/progress-steps`,
   },
   {
-    name: 'Tech Blog',
+    name: 'Animated Login Form',
+    category: 'Front-End',
+    image: form,
+    description: 'Sign-in screen with letter-by-letter wave labels, inline validation and a password visibility toggle.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Form UX'],
+    demo: 'https://jhwang2525.github.io/input-form/',
+    code: `${GH}/input-form`,
+  },
+  {
+    name: 'Split Landing Page',
+    category: 'Front-End',
+    image: landingpage,
+    description: 'Two-sided studio landing page where the hovered or focused side expands, built with pure CSS backgrounds.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Animation'],
+    demo: 'https://jhwang2525.github.io/split-landing-page/',
+    code: `${GH}/split-landing-page`,
+  },
+  {
+    name: 'Book Search Engine API',
     category: 'Full-Stack',
-    description:
-      'CMS-style blog where developers publish posts and comment on each other\'s work, with session-based authentication.',
-    tags: ['Node.js', 'Express', 'Handlebars', 'Sequelize', 'MVC'],
-    code: `${GH}/tech-blog`,
+    description: 'GraphQL API for a Google Books search app: sign-up, login and saved books per user, with JWT authentication.',
+    tags: ['GraphQL', 'Apollo Server', 'MongoDB', 'JWT'],
+    code: `${GH}/book-search-engine`,
   },
   {
     name: 'E-Commerce Back End',
@@ -237,66 +321,6 @@ export const projects = [
     description: 'NoSQL API for a social network: users, thoughts, reactions and friend lists.',
     tags: ['Express', 'MongoDB', 'Mongoose'],
     code: `${GH}/social-network-api`,
-  },
-  {
-    name: 'Budget Tracker',
-    category: 'Full-Stack',
-    image: tracker,
-    description: 'Track deposits and expenses with a running balance and a chart of spending over time.',
-    tags: ['Node.js', 'Express', 'MongoDB', 'Chart.js'],
-    code: `${GH}/budget-tracker`,
-  },
-  {
-    name: 'Note Taker',
-    category: 'Full-Stack',
-    image: note,
-    description: 'Express app for writing, saving and deleting notes, backed by a JSON file API.',
-    tags: ['Node.js', 'Express', 'REST'],
-    code: `${GH}/note-taker`,
-  },
-  {
-    name: 'Weather Dashboard',
-    category: 'Front-End',
-    description: 'Search any city for current conditions and a 5-day forecast, with saved search history.',
-    tags: ['JavaScript', 'OpenWeather API', 'localStorage'],
-    demo: 'https://jhwang2525.github.io/weather-dashboard/',
-    code: `${GH}/weather-dashboard`,
-  },
-  {
-    name: 'Taskinator',
-    category: 'Front-End',
-    image: taskinator,
-    description: 'Task list organizer with to-do, in-progress and completed columns, saved in the browser.',
-    tags: ['JavaScript', 'DOM', 'localStorage'],
-    demo: 'https://jhwang2525.github.io/taskinator/',
-    code: `${GH}/taskinator`,
-  },
-  {
-    name: 'Split Landing Page',
-    category: 'Front-End',
-    image: landingpage,
-    description: 'Two-sided landing page where the hovered side expands to reveal its content.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    demo: 'https://jhwang2525.github.io/split-landing-page/',
-    code: `${GH}/split-landing-page`,
-  },
-  {
-    name: 'Progress Steps',
-    category: 'Front-End',
-    image: progress,
-    description: 'Step indicator UI component that guides users through a multi-step process.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    demo: 'https://jhwang2525.github.io/progress-steps/',
-    code: `${GH}/progress-steps`,
-  },
-  {
-    name: 'Input Form',
-    category: 'Front-End',
-    image: form,
-    description: 'Login form with animated, letter-by-letter floating labels.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    demo: 'https://jhwang2525.github.io/input-form/',
-    code: `${GH}/input-form`,
   },
 ];
 
