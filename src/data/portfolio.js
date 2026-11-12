@@ -3,6 +3,9 @@
 
 import afterhour from '../assets/projects/afterhour.jpg';
 import chalet from '../assets/projects/chalet.jpg';
+import waycaps from '../assets/projects/waycaps.jpg';
+import aganature from '../assets/projects/aganature.jpg';
+import edu from '../assets/projects/edu.jpg';
 import progress from '../assets/projects/progress.jpg';
 import note from '../assets/projects/note.jpg';
 import form from '../assets/projects/form.jpg';
@@ -101,7 +104,6 @@ export const education = [
 // Other Shopify stores (smaller list under the featured client work)
 export const moreStores = [
   { name: 'Hatzun', theme: 'Dawn', url: 'https://www.hatzun.com' },
-  { name: 'EDU Arts District', theme: 'Symmetry', url: 'https://www.edu-artsdistrict.com' },
   { name: 'Azrapaw', theme: 'Minion', url: 'https://www.azrapaws.com' },
   { name: 'Afterhour Korea', theme: 'Dawn', url: 'https://www.afhr.co.kr' },
 ];
@@ -113,6 +115,7 @@ export const clientWork = [
     type: 'Envy theme · Wholesale & B2B',
     url: 'https://www.waycaps.com',
     code: `${GH}/shopify-waycap-theme`,
+    image: waycaps,
     accent: 'from-[#3bba9c] to-[#2b6f8f]',
     summary:
       'Headwear brand selling to both retail shoppers and wholesale buyers. I build and maintain the store, including its Mexico storefront.',
@@ -129,6 +132,7 @@ export const clientWork = [
     type: 'New build on Horizon',
     url: 'https://aganature.com',
     code: `${GH}/Aga-Nature-Develop`,
+    image: aganature,
     accent: 'from-[#8F533F] to-[#c9a27e]',
     summary:
       'Natural dye marketplace and studio. Built from scratch on Shopify Horizon with an editorial, content-first design system.',
@@ -141,13 +145,29 @@ export const clientWork = [
     tags: ['Horizon', 'Liquid', 'CSS variables', 'Section Rendering API'],
   },
   {
+    name: 'EDU Arts District',
+    type: 'Symmetry theme · Streetwear',
+    url: 'https://www.edu-artsdistrict.com',
+    code: `${GH}/EDU-Artsdistrict`,
+    image: edu,
+    accent: 'from-[#111111] to-[#555555]',
+    summary:
+      'Refined streetwear and headwear label shipping from a Los Angeles studio. I built and run the store on the Symmetry theme.',
+    highlights: [
+      'Video-led homepage with editorial collection stories',
+      'Headwear shopping by crown fit (10+, High, Mid, Low)',
+      'Private Archive section for early samples and one-of-one pieces',
+    ],
+    tags: ['Symmetry', 'Liquid', 'Video', 'Collections'],
+  },
+  {
     name: 'Chalet et Ceci',
-    type: 'Dawn customization',
+    type: 'Wix to Shopify migration · Dawn',
     url: 'https://www.shopchaletetceci.com',
     code: `${GH}/shopify-chalet-theme`,
     image: chalet,
     summary:
-      'Women\'s clothing brand, made in the USA. Ongoing theme development, store fixes and seasonal campaigns.',
+      'Women\'s clothing brand, made in the USA. I moved the store from Wix to Shopify and handle ongoing theme development, SEO and seasonal campaigns.',
     highlights: [
       'Custom collection slider and accordion sections',
       'Store locator and swatch app integrations',

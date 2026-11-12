@@ -95,7 +95,7 @@ const ShopifyWork = () => {
 
         <div className='mt-24'>
           <h3 className='mb-6 font-display text-sm font-semibold tracking-wider text-ink-light'>More Shopify stores</h3>
-          <ul className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+          <ul className='grid gap-4 sm:grid-cols-3'>
             {moreStores.map((store) => (
               <li key={store.name}>
                 <a
