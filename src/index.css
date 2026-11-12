@@ -2,65 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Prompt&family=Ubuntu&display=swap');
-
+@font-face {
+  font-family: 'Orbitron';
+  src: url('./assets/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-display: swap;
+}
 
 @layer base {
-    body {
-        @apply font-[Raleway];
-    }
-    li {
-        @apply px-4;
-        @apply cursor-pointer;
-    }
-}
-.content-div {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 250px;
+  body {
+    @apply bg-navy font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent text-navy;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-navy;
+  }
 }
 
-.content-div:hover {
-    background-image: linear-gradient(
-        to right,
-        rgba(112, 157, 255, 0.8),
-        hsla(242, 74%, 61%, 0.8)
-    )!important;
-}
+@layer components {
+  .section {
+    @apply px-6 py-24 sm:py-28;
+  }
 
-.gradient-bg {
-    position: relative;
-    background: #ab66a0;
-    background: linear-gradient(135deg, #ab66a0 0%, #799fca 100%);
-}
+  .container-site {
+    @apply mx-auto w-full max-w-site;
+  }
 
-.gradient-bg::before {
+  .section-title {
+    @apply mb-12 flex items-center gap-4 font-display text-2xl font-bold text-ink-light sm:text-3xl;
+  }
+
+  .section-title::after {
     content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(
-        0deg,
-        #000 0%,
-        rgba(0, 0, 0, .5) 12%,
-        rgba(0, 0, 0, .1) 30%,
-        rgba(0, 0, 0, 0) 40%
-    );
+    @apply h-px flex-1 bg-navy-line;
+  }
+
+  .section-title span {
+    @apply font-sans text-base font-normal text-accent sm:text-lg;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-display text-sm font-semibold tracking-wide transition duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-navy hover:-translate-y-0.5 hover:bg-accent-dark;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-accent text-accent hover:-translate-y-0.5 hover:bg-accent/10;
+  }
+
+  .card {
+    @apply rounded-xl border border-navy-line/60 bg-navy-card/60 shadow-lg shadow-black/20 transition duration-300;
+  }
+
+  .tag {
+    @apply rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent;
+  }
+
+  .link-subtle {
+    @apply inline-flex items-center gap-1.5 text-sm font-medium text-ink-light transition hover:text-accent;
+  }
 }
 
-@font-face {
-    font-family: orbitron;
-    src: url(../public/Orbitron-VariableFont_wght.ttf);
-}
-.orbitron {
-    font-family: orbitron
-}
-.ubuntu {
-    font-family: ubuntu
-}
-.prompt {
-    font-family: prompt;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
