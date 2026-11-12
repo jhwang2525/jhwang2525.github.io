@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { id: 'experience', label: 'Experience' },
   { id: 'work', label: 'Shopify Work' },
   { id: 'projects', label: 'Projects' },
+  { id: 'devmode', label: 'Dev Mode' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -60,17 +61,17 @@ const Navbar = ({ onOpenTerminal }) => {
         <nav className='container-site flex h-[72px] items-center justify-between px-6' aria-label='Main'>
           <Link to='home' {...SCROLL} onClick={close} className='flex cursor-pointer items-center gap-3'>
             <img src={avatar} alt='' className='h-10 w-10 rounded-lg' width='40' height='40' />
-            <span className='font-display text-sm font-bold tracking-wider text-ink-light'>JUN HWANG</span>
+            <span className='whitespace-nowrap font-display text-sm font-bold tracking-wider text-ink-light'>JUN HWANG</span>
           </Link>
 
-          <ul className='hidden items-center gap-1 md:flex'>
+          <ul className='hidden items-center gap-1 xl:flex'>
             {NAV_ITEMS.map((item, i) => (
               <li key={item.id}>
                 <Link
                   to={item.id}
                   {...SCROLL}
                   activeClass='!text-accent'
-                  className='cursor-pointer px-3 py-2 font-display text-xs tracking-wider text-ink transition hover:text-accent'
+                  className='cursor-pointer whitespace-nowrap px-3 py-2 font-display text-xs tracking-wider text-ink transition hover:text-accent'
                 >
                   <span className='text-accent'>0{i + 1}.</span> {item.label}
                 </Link>
@@ -96,7 +97,7 @@ const Navbar = ({ onOpenTerminal }) => {
 
           <button
             type='button'
-            className='rounded p-2 text-xl text-ink-light md:hidden'
+            className='rounded p-2 text-xl text-ink-light xl:hidden'
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -109,7 +110,7 @@ const Navbar = ({ onOpenTerminal }) => {
 
       {/* Mobile menu (outside the header: its backdrop blur would trap a fixed child) */}
         <div
-          className={`fixed inset-x-0 bottom-0 top-[72px] z-40 bg-navy transition duration-300 md:hidden ${
+          className={`fixed inset-x-0 bottom-0 top-[72px] z-40 bg-navy transition duration-300 xl:hidden ${
             open ? 'visible opacity-100' : 'invisible opacity-0'
           }`}
         >

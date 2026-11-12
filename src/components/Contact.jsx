@@ -119,7 +119,7 @@ const Contact = () => {
     <section id='contact' className='section bg-navy-dark'>
       <div className='container-site max-w-[960px]'>
         <div className='text-center'>
-          <p className='font-display text-sm tracking-widest text-accent'>05. What's next?</p>
+          <p className='font-display text-sm tracking-widest text-accent'>06. What's next?</p>
           <h2 className='mt-4 font-display text-4xl font-bold text-ink-light sm:text-5xl'>Get in touch</h2>
           <p className='mx-auto mt-6 max-w-[560px] text-lg leading-relaxed'>
             Tell me a little about what you need and I'll draft the email for you. It takes about 30 seconds.
