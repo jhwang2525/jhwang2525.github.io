@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
-import { clientWork } from '../data/portfolio';
+import { clientWork, moreStores } from '../data/portfolio';
 
 // Browser-window frame: shows a screenshot if one is set, otherwise a branded cover
 const BrowserFrame = ({ site }) => {
@@ -91,6 +91,30 @@ const ShopifyWork = () => {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className='mt-24'>
+          <h3 className='mb-6 font-display text-sm font-semibold tracking-wider text-ink-light'>More Shopify stores</h3>
+          <ul className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+            {moreStores.map((store) => (
+              <li key={store.name}>
+                <a
+                  href={store.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='card group flex items-center justify-between gap-3 p-5 hover:-translate-y-1 hover:border-accent/50'
+                >
+                  <span>
+                    <span className='block font-semibold text-ink-light'>{store.name}</span>
+                    <span className='mt-0.5 block font-display text-[11px] tracking-widest text-accent'>
+                      {store.theme} theme
+                    </span>
+                  </span>
+                  <HiOutlineExternalLink className='shrink-0 text-lg text-ink-muted transition group-hover:text-accent' />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
