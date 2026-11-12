@@ -102,6 +102,9 @@ const ChatAssistant = () => {
                   }`}
                 >
                   {m.text}
+                  {m.image && (
+                    <img src={m.image} alt={m.imageAlt || ''} className='mt-2 w-full max-w-[240px] rounded-xl' loading='lazy' />
+                  )}
                   {m.actions && (
                     <div className='mt-2.5 flex flex-wrap gap-2'>
                       {m.actions.map((a) =>
