@@ -1,31 +1,85 @@
-import React from 'react'
+import React from 'react';
+import { HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch } from 'react-icons/hi';
+import avatar from '../assets/jun.png';
+import Reveal from './Reveal';
+import { about, skills, services, profile } from '../data/portfolio';
+
+const SERVICE_ICONS = [HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch];
 
 const About = () => {
   return (
-    <div name='about' className='w-full h-screen bg-[#2E3047] text-gray-300'> 
-      <div className='flex flex-col justify-center items-center w-full h-full'>
-        <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8'>
-            <div className='sm:text-right pb-8 pl-4'>
-                <p className='text-4xl orbitron font-bold inline border-b-4 border-[#3bba9c]'>About</p>
-            </div>
-            <div>
-            </div>
-            </div>
-            <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
-              <div className='sm:text-4xl orbitron font-bold'>
-                <p>Hi, I'm Jun nice to meet you</p>
-              </div>
-              <div>
-                <p className='prompt'>I'm a front-end developer with a passion for creating beautiful and intuitive user interfaces. I recently completed the full stack web development bootcamp at UCLA.
-                I am always eager to learn new technologies and frameworks to improve my skills and stay up-to-date with the latest industry trends.
+    <section id='about' className='section bg-navy-dark'>
+      <div className='container-site'>
+        <h2 className='section-title'>
+          <span>01.</span> About Me
+        </h2>
 
+        <Reveal>
+          <div className='grid gap-12 md:grid-cols-[1fr_280px]'>
+            <div className='space-y-5 text-[17px] leading-relaxed'>
+              {about.map((p) => (
+                <p key={p.slice(0, 24)}>{p}</p>
+              ))}
+              <p>
+                Based in <span className='text-ink-light'>{profile.location}</span> and open to freelance projects and
+                full-time front-end or Shopify roles.
+              </p>
+            </div>
 
-</p>
+            <div className='mx-auto w-full max-w-[280px]'>
+              <div className='group relative'>
+                <div className='absolute inset-0 translate-x-4 translate-y-4 rounded-xl border-2 border-accent transition group-hover:translate-x-3 group-hover:translate-y-3' />
+                <img
+                  src={avatar}
+                  alt='Jun Hwang avatar'
+                  className='relative aspect-square w-full rounded-xl object-cover'
+                  width='280'
+                  height='280'
+                  loading='lazy'
+                />
               </div>
             </div>
+          </div>
+        </Reveal>
+
+        <h3 className='mb-6 mt-20 font-display text-sm font-semibold tracking-wider text-ink-light'>What I do</h3>
+        <div className='grid gap-6 md:grid-cols-3'>
+          {services.map((s, i) => {
+            const Icon = SERVICE_ICONS[i % SERVICE_ICONS.length];
+            return (
+              <Reveal key={s.title} delay={i * 100}>
+                <article className='card h-full p-7 hover:-translate-y-1 hover:border-accent/50'>
+                  <span className='mb-5 grid h-12 w-12 place-items-center rounded-lg bg-accent/10 text-2xl text-accent'>
+                    <Icon aria-hidden='true' />
+                  </span>
+                  <h4 className='text-lg font-semibold text-ink-light'>{s.title}</h4>
+                  <p className='mt-3 text-[15px] leading-relaxed'>{s.text}</p>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <h3 className='mb-6 mt-20 font-display text-sm font-semibold tracking-wider text-ink-light'>Tech I work with</h3>
+        <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+          {skills.map((group, i) => (
+            <Reveal key={group.group} delay={i * 80}>
+              <div className='card h-full p-6 hover:border-accent/50'>
+                <h4 className='mb-4 font-display text-sm font-semibold tracking-wider text-ink-light'>{group.group}</h4>
+                <ul className='flex flex-wrap gap-2'>
+                  {group.items.map((item) => (
+                    <li key={item} className='rounded-md bg-navy-dark/70 px-2.5 py-1 text-[13px] text-ink'>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default About
+export default About;
