@@ -23,7 +23,7 @@ const SOCIALS = [
   { label: 'Resume', href: resume, icon: HiOutlineDocumentText },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onOpenTerminal }) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -76,7 +76,18 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li className='ml-3'>
+            <li className='ml-2'>
+              <button
+                type='button'
+                onClick={onOpenTerminal}
+                className='rounded-md border border-navy-line px-2.5 py-1.5 font-mono text-xs text-accent transition hover:border-accent'
+                title='Open terminal (press ~)'
+                aria-label='Open developer terminal'
+              >
+                &gt;_
+              </button>
+            </li>
+            <li className='ml-2'>
               <a href={resume} target='_blank' rel='noopener noreferrer' className='btn-outline !px-4 !py-2 !text-xs'>
                 Resume
               </a>
@@ -115,6 +126,18 @@ const Navbar = () => {
                 </button>
               </li>
             ))}
+            <li>
+              <button
+                type='button'
+                onClick={() => {
+                  close();
+                  onOpenTerminal();
+                }}
+                className='font-mono text-lg text-accent'
+              >
+                &gt;_ Open terminal
+              </button>
+            </li>
             <li>
               <a href={resume} target='_blank' rel='noopener noreferrer' className='btn-outline' onClick={close}>
                 Resume

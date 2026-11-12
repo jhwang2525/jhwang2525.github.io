@@ -27,6 +27,15 @@ module.exports = {
       maxWidth: {
         site: '1100px',
       },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        blink: {
+          '50%': { opacity: '0' },
+        },
+      },
     },
   },
   plugins: [],

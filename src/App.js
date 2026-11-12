@@ -6,11 +6,29 @@ import ShopifyWork from './components/ShopifyWork';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ChatAssistant from './components/ChatAssistant';
+import Terminal from './components/Terminal';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [terminalOpen, setTerminalOpen] = useState(false);
+
+  // Press ~ (or `) anywhere outside a text field to open the terminal
+  useEffect(() => {
+    const onKey = (e) => {
+      const typing = e.target.closest('input, textarea, select, [contenteditable="true"]');
+      if (!typing && (e.key === '`' || e.key === '~')) {
+        e.preventDefault();
+        setTerminalOpen((o) => !o);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
     <>
-      <Navbar />
+      <Navbar onOpenTerminal={() => setTerminalOpen(true)} />
       <main>
         <Home />
         <About />
@@ -20,6 +38,8 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ChatAssistant />
+      <Terminal open={terminalOpen} onClose={() => setTerminalOpen(false)} />
     </>
   );
 }
