@@ -1,21 +1,30 @@
 {
   "files": {
-    "main.css": "/jun-portfolio/static/css/main.912f2f00.css",
-    "main.js": "/jun-portfolio/static/js/main.a534a82b.js",
-    "static/media/resume.pdf": "/jun-portfolio/static/media/resume.f50aca0ac8b64c02387f.pdf",
-    "static/media/landingpage.jpeg": "/jun-portfolio/static/media/landingpage.ee7bdcd542f9a6837d7e.jpeg",
-    "static/media/tracker.jpeg": "/jun-portfolio/static/media/tracker.7f01e13fdbb4a2bffc61.jpeg",
-    "static/media/taskinator.jpeg": "/jun-portfolio/static/media/taskinator.cd52cfea7f39303e552a.jpeg",
-    "static/media/form.png": "/jun-portfolio/static/media/form.dd1a25ef0cacb3a40683.png",
-    "static/media/progress.jpeg": "/jun-portfolio/static/media/progress.99224e049781bf422877.jpeg",
-    "static/media/note.jpeg": "/jun-portfolio/static/media/note.e73e038ad25ef16e9a4a.jpeg",
-    "static/media/Orbitron-VariableFont_wght.ttf": "/jun-portfolio/static/media/Orbitron-VariableFont_wght.7228a1c750b75b23bdb4.ttf",
-    "index.html": "/jun-portfolio/index.html",
-    "main.912f2f00.css.map": "/jun-portfolio/static/css/main.912f2f00.css.map",
-    "main.a534a82b.js.map": "/jun-portfolio/static/js/main.a534a82b.js.map"
+    "main.css": "/static/css/main.813adfcf.css",
+    "main.js": "/static/js/main.f9025c00.js",
+    "static/media/resume.pdf": "/static/media/resume.f894c2f2a966fb193f7e.pdf",
+    "static/media/linehop.png": "/static/media/linehop.319784d5ed74f7e14122.png",
+    "static/media/fitness.png": "/static/media/fitness.52bf3bb8b7a649d2d43f.png",
+    "static/media/afterhour.jpg": "/static/media/afterhour.31e4527a153e2f0abf0f.jpg",
+    "static/media/techblog.jpg": "/static/media/techblog.28031317a44f1aaa44ed.jpg",
+    "static/media/waycaps.jpg": "/static/media/waycaps.2a5aadc1f5fe6798b25f.jpg",
+    "static/media/chalet.jpg": "/static/media/chalet.60a0c8bd953b89cb101a.jpg",
+    "static/media/aganature.jpg": "/static/media/aganature.85d87032ad2e6d37bcab.jpg",
+    "static/media/weather.jpg": "/static/media/weather.c3456fd5ad31eeb608d0.jpg",
+    "static/media/tracker.jpg": "/static/media/tracker.30e2998f95235fe20a7c.jpg",
+    "static/media/landingpage.jpg": "/static/media/landingpage.cceb136788c9f4773e3e.jpg",
+    "static/media/Orbitron-VariableFont_wght.ttf": "/static/media/Orbitron-VariableFont_wght.7228a1c750b75b23bdb4.ttf",
+    "static/media/taskinator.jpg": "/static/media/taskinator.6ebafef35d736a9aed91.jpg",
+    "static/media/form.jpg": "/static/media/form.57f571d8cabc32426c5a.jpg",
+    "static/media/edu.jpg": "/static/media/edu.c0fe471282c91078af4d.jpg",
+    "static/media/note.jpg": "/static/media/note.f495785a69eaef4984b8.jpg",
+    "static/media/progress.jpg": "/static/media/progress.c3c94ec673fdfbc23026.jpg",
+    "index.html": "/index.html",
+    "main.813adfcf.css.map": "/static/css/main.813adfcf.css.map",
+    "main.f9025c00.js.map": "/static/js/main.f9025c00.js.map"
   },
   "entrypoints": [
-    "static/css/main.912f2f00.css",
-    "static/js/main.a534a82b.js"
+    "static/css/main.813adfcf.css",
+    "static/js/main.f9025c00.js"
   ]
 }
