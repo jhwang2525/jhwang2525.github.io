@@ -3,6 +3,7 @@
 // getReply() is async on purpose: it can later be swapped for a call to an AI endpoint.
 
 import { profile, clientWork, moreStores, projects, skills, experience, education } from './portfolio';
+import sideEye from '../assets/side-eye.jpg';
 
 const list = (items) => items.join(', ').replace(/, ([^,]*)$/, ' and $1');
 
@@ -152,7 +153,14 @@ const normalize = (s) =>
     .split(/\s+/)
     .filter(Boolean);
 
+// Any Korean (Hangul) in the message gets the side-eye dog 👀
+const HANGUL = /[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/;
+
 export async function getReply(message) {
+  if (HANGUL.test(message)) {
+    return { text: '👀', image: sideEye, imageAlt: 'Dog giving a suspicious side-eye' };
+  }
+
   const words = normalize(message);
   const text = ` ${words.join(' ')} `;
   let best = null;
