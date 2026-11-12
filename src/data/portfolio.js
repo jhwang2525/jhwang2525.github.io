@@ -27,13 +27,13 @@ export const profile = {
 };
 
 export const stats = [
-  { value: '5+', label: 'Live Shopify stores built & maintained' },
+  { value: '8+', label: 'Live Shopify stores built & maintained' },
   { value: '2020', label: 'Building e-commerce since' },
   { value: 'UCLA', label: 'Full-Stack Web Development' },
 ];
 
 export const about = [
-  "I started on the business side of e-commerce, watching analytics, running promotions and figuring out why shoppers didn't convert. That curiosity pulled me into code: I completed UCLA's Full-Stack Web Development program and Google's UX Design certificate, and I've been building storefronts ever since.",
+  "I started on the business side of e-commerce, watching analytics, running promotions and figuring out why shoppers didn't convert. That curiosity pulled me into code: I completed UCLA's Full-Stack Web Development program and Google's UX Design Specialization, and I've been building storefronts ever since.",
   "Today I run a small Shopify development practice. I work directly with brand owners on everything from new theme builds on Horizon and Dawn to wholesale pricing, B2B checkout flows, custom sections and performance fixes. I care about clean, maintainable code that the client's team can still edit in the theme editor.",
 ];
 
@@ -44,7 +44,7 @@ export const skills = [
   },
   {
     group: 'Front-End',
-    items: ['JavaScript (ES6+)', 'React', 'HTML5', 'CSS3', 'Tailwind CSS', 'Responsive design', 'Accessibility'],
+    items: ['JavaScript (ES6+)', 'React', 'React Native', 'jQuery', 'HTML5 & CSS3', 'Tailwind CSS', 'Bootstrap', 'Responsive design'],
   },
   {
     group: 'Back-End',
@@ -58,47 +58,59 @@ export const skills = [
 
 export const experience = [
   {
-    title: 'Shopify Developer & Agency Owner',
-    company: 'Freelance / Remote',
+    title: 'Shopify Developer',
+    company: 'Waycap Inc. · Los Angeles, CA',
+    period: 'Contract',
+    points: [
+      'Design, build and maintain the Waycaps Shopify stores, focused on usability and conversion.',
+      'Built retail, wholesale and B2B cart experiences with account-based pricing, tax-exempt checkout and company catalogs.',
+      'Shipped custom Liquid sections, a hat design configurator, a free sample program and a trade-show digital catalog.',
+      'Provide ongoing maintenance, SEO and performance improvements to keep the sites fast and secure.',
+    ],
+  },
+  {
+    title: 'Retail E-Commerce Developer & Online Marketing',
+    company: 'Chalet et Ceci · Freelance / Remote',
     period: '2023 – Present',
     points: [
-      'Build and maintain custom Shopify themes for apparel, headwear and natural-dye brands, including Waycaps, AGA Nature and Chalet et Ceci.',
-      'Built retail, wholesale and B2B cart experiences with account-based pricing, tax-exempt checkout and company catalogs.',
-      'Designed and shipped custom Liquid sections, multi-step request forms, product configurators and branded email notifications.',
-      'Diagnose and fix theme performance, Core Web Vitals and third-party app conflicts.',
+      'Migrated the store from Wix to Shopify, improving site functionality and the shopping experience.',
+      'Designed and developed a customized, mobile-first Shopify theme with better product presentation and navigation.',
+      'Implemented SEO strategies that grew organic traffic and search rankings.',
+      'Ran online marketing campaigns across social media and digital ads to drive engagement and sales.',
     ],
   },
   {
     title: 'Retail E-Commerce Developer',
-    company: 'Rehab Clothing · Los Angeles, CA',
+    company: 'Afterhour · Los Angeles, CA',
     period: '2020 – Present',
     points: [
-      'Built mobile-first, responsive storefront pages and optimized them for speed.',
+      'Built mobile-first, responsive storefront pages and optimized them for speed and scalability.',
       'Developed JavaScript features that improved the shopping experience and conversion rate.',
-      'Used traffic and sales analytics to guide site changes and promotions.',
-    ],
-  },
-  {
-    title: 'Wholesale / E-Commerce',
-    company: 'Scansys Inc. · Santa Fe Springs, CA',
-    period: '2017 – 2018',
-    points: [
-      'Monitored the e-commerce platform daily and tracked sales trends with analytics.',
-      'Developed online sales strategies to meet revenue and growth targets.',
+      'Implemented SEO best practices and used traffic analytics to grow organic traffic and revenue.',
+      'Ran new-season photoshoots, the import process and pre-orders, and launched an additional sales channel.',
     ],
   },
 ];
 
 export const education = [
   { title: 'Full Stack Web Development', org: 'University of California, Los Angeles', year: '2021' },
-  { title: 'Google UX Design Certificate', org: 'Google / Coursera', year: '2023' },
+  { title: 'Google UX Design Specialization', org: 'Google / Coursera', year: '2023' },
+  { title: 'AWS Cloud Practitioner', org: 'Amazon Web Services', year: 'In progress' },
+];
+
+// Other Shopify stores (smaller list under the featured client work)
+export const moreStores = [
+  { name: 'Hatzun', theme: 'Dawn', url: 'https://www.hatzun.com' },
+  { name: 'EDU Arts District', theme: 'Symmetry', url: 'https://www.edu-artsdistrict.com' },
+  { name: 'Azrapaw', theme: 'Minion', url: 'https://www.azrapaws.com' },
+  { name: 'Afterhour Korea', theme: 'Dawn', url: 'https://www.afhr.co.kr' },
 ];
 
 // Featured client work. Add a screenshot by importing it above and setting `image`.
 export const clientWork = [
   {
     name: 'Waycaps',
-    type: 'Custom theme · Wholesale & B2B',
+    type: 'Envy theme · Wholesale & B2B',
     url: 'https://www.waycaps.com',
     code: `${GH}/shopify-waycap-theme`,
     accent: 'from-[#3bba9c] to-[#2b6f8f]',
