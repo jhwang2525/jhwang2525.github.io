@@ -1,22 +1,49 @@
-import React from 'react'
-import {BsFillPersonLinesFill} from 'react-icons/bs'
-import {HiOutlineMail} from 'react-icons/hi'
-import {FaGithub, FaLinkedin} from 'react-icons/fa'
+import React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+import { profile } from '../data/portfolio';
+
+const LINKS = [
+  { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, icon: HiOutlineMail },
+  { label: 'GitHub', value: 'github.com/jhwang2525', href: profile.github, icon: FaGithub },
+  { label: 'LinkedIn', value: 'Jun Hwang', href: profile.linkedin, icon: FaLinkedin },
+];
 
 const Contact = () => {
   return (
-    <div name='contact' className='w-full h-screen bg-[#2E3047] flex justify-center items-center p-4'>
+    <section id='contact' className='section bg-navy-dark'>
+      <div className='container-site max-w-[960px] text-center'>
+        <p className='font-display text-sm tracking-widest text-accent'>05. What's next?</p>
+        <h2 className='mt-4 font-display text-4xl font-bold text-ink-light sm:text-5xl'>Get in touch</h2>
+        <p className='mx-auto mt-6 max-w-[560px] text-lg leading-relaxed'>
+          Need a Shopify store built, fixed or made faster, or looking for a front-end developer for your team? My
+          inbox is always open and I'll get back to you soon.
+        </p>
+        <a href={`mailto:${profile.email}`} className='btn-primary mt-10 !px-8 !py-4'>
+          Say hello
+        </a>
 
-            <div className='pb-8'>
-                <p className='text-4xl orbitron font-bold inline border-b-4 border-[#3bba9c] text-gray-300'>Contact</p>
-                <p className='text-gray-300 py-4 flex prompt'> <HiOutlineMail size={30}/>jhwang2525@gmail.com</p>
-                <p className='text-gray-300 py-4 flex prompt'> <FaGithub size={30}/>github.com/jhwang2525</p>
-                <p className='text-gray-300 py-4 flex prompt'> <FaLinkedin size={30}/>linkedin.com/in/jun-hwang-834951207/</p>
+        <ul className='mx-auto mt-14 grid max-w-[340px] gap-4 text-left md:max-w-none md:grid-cols-3'>
+          {LINKS.map(({ label, value, href, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel='noopener noreferrer'
+                className='card flex items-center gap-3 p-4 hover:-translate-y-1 hover:border-accent/50'
+              >
+                <Icon className='shrink-0 text-2xl text-accent' aria-hidden='true' />
+                <span className='min-w-0'>
+                  <span className='block text-xs text-ink-muted'>{label}</span>
+                  <span className='block truncate text-sm text-ink-light'>{value}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+};
 
-            </div>
-      
-    </div>
-  )
-}
-
-export default Contact
+export default Contact;

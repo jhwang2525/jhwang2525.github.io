@@ -1,104 +1,147 @@
-import React, {useState} from 'react'
-import {FaBars, FaTimes, FaGithub, FaLinkedin} from 'react-icons/fa'
-import {HiOurlineMail, HiOutlineMail} from 'react-icons/hi'
-import {BsFillPersonLinesFill} from 'react-icons/bs'
-import Jun from '../assets/jun.png'
-import {Link} from 'react-scroll'
-import myFile from "../assets/resume.pdf"
+import React, { useEffect, useState } from 'react';
+import { Link, scroller } from 'react-scroll';
+import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { HiOutlineMail, HiOutlineDocumentText } from 'react-icons/hi';
+import avatar from '../assets/jun.png';
+import resume from '../assets/resume.pdf';
+import { profile } from '../data/portfolio';
+
+const NAV_ITEMS = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'work', label: 'Shopify Work' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+];
+
+const SCROLL = { spy: true, smooth: true, duration: 500, offset: -72 };
+
+const SOCIALS = [
+  { label: 'GitHub', href: profile.github, icon: FaGithub },
+  { label: 'LinkedIn', href: profile.linkedin, icon: FaLinkedin },
+  { label: 'Email', href: `mailto:${profile.email}`, icon: HiOutlineMail },
+  { label: 'Resume', href: resume, icon: HiOutlineDocumentText },
+];
 
 const Navbar = () => {
-    const [nav, setNav] = useState(false)
-    const handleClick = () => setNav(!nav)
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Stop the page behind the mobile menu from scrolling
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  const close = () => setOpen(false);
+
+  // Mobile: close the menu first (unlocks page scrolling), then scroll to the section
+  const goTo = (id) => {
+    setOpen(false);
+    setTimeout(() => scroller.scrollTo(id, { smooth: true, duration: 500, offset: -72 }), 50);
+  };
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 orbitron bg-[#2E3047] text-gray-300'>
-      <div>
-        <img src={Jun} alt="Logo Image" style={{width: '50px'}}/>
-      </div>
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+          scrolled || open ? 'bg-navy/90 shadow-lg shadow-black/20 backdrop-blur' : 'bg-transparent'
+        }`}
+      >
+        <nav className='container-site flex h-[72px] items-center justify-between px-6' aria-label='Main'>
+          <Link to='home' {...SCROLL} onClick={close} className='flex cursor-pointer items-center gap-3'>
+            <img src={avatar} alt='' className='h-10 w-10 rounded-lg' width='40' height='40' />
+            <span className='font-display text-sm font-bold tracking-wider text-ink-light'>JUN HWANG</span>
+          </Link>
 
-      {/* menu */}
-        <ul className='hidden md:flex'>
-            <li>
-            <Link to="home" smooth={true} duration={500}>
-          Home
-        </Link>
+          <ul className='hidden items-center gap-1 md:flex'>
+            {NAV_ITEMS.map((item, i) => (
+              <li key={item.id}>
+                <Link
+                  to={item.id}
+                  {...SCROLL}
+                  activeClass='!text-accent'
+                  className='cursor-pointer px-3 py-2 font-display text-xs tracking-wider text-ink transition hover:text-accent'
+                >
+                  <span className='text-accent'>0{i + 1}.</span> {item.label}
+                </Link>
+              </li>
+            ))}
+            <li className='ml-3'>
+              <a href={resume} target='_blank' rel='noopener noreferrer' className='btn-outline !px-4 !py-2 !text-xs'>
+                Resume
+              </a>
             </li>
-            <li>
-            <Link to="about" smooth={true} duration={500}>
-          About
-        </Link>
-            </li>
-            <li>
-            <Link to="projects" smooth={true} duration={500}>
-          Projects
-        </Link>
-            </li>
-            <li>
-            <Link to="contact" smooth={true} duration={500}>
-          Contact
-        </Link>
-            </li>
-        </ul>
+          </ul>
 
-      {/* Hamburger */}
-      <div onClick={handleClick} className='md:hidden z-10'>
-        {!nav ? <FaBars /> : <FaTimes />}
-      </div>
-      {/* Mobile menu */}
-      <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#2E3047] flex flex-col justify-center items-center'}>
-            <li className='py-6 text text-4xl'>
-            <Link onClick={handleClick} to="home" smooth={true} duration={500}>
-          Home
-        </Link>
+          <button
+            type='button'
+            className='rounded p-2 text-xl text-ink-light md:hidden'
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+          >
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+        </nav>
+
+      </header>
+
+      {/* Mobile menu (outside the header: its backdrop blur would trap a fixed child) */}
+        <div
+          className={`fixed inset-x-0 bottom-0 top-[72px] z-40 bg-navy transition duration-300 md:hidden ${
+            open ? 'visible opacity-100' : 'invisible opacity-0'
+          }`}
+        >
+          <ul className='flex h-full flex-col items-center justify-center gap-8'>
+            {NAV_ITEMS.map((item, i) => (
+              <li key={item.id}>
+                <button
+                  type='button'
+                  onClick={() => goTo(item.id)}
+                  className='font-display text-2xl text-ink-light hover:text-accent'
+                >
+                  <span className='mr-2 text-base text-accent'>0{i + 1}.</span>
+                  {item.label}
+                </button>
+              </li>
+            ))}
+            <li>
+              <a href={resume} target='_blank' rel='noopener noreferrer' className='btn-outline' onClick={close}>
+                Resume
+              </a>
             </li>
-            <li className='py-6 text text-4xl'>
-            <Link onClick={handleClick} to="about" smooth={true} duration={500}>
-          About
-        </Link>
-            </li>
-            <li className='py-6 text text-4xl'>
-            <Link onClick={handleClick} to="projects" smooth={true} duration={500}>
-          Projects
-        </Link>
-            </li>
-            <li className='py-6 text text-4xl'>
-            <Link onClick={handleClick} to="contact" smooth={true} duration={500}>
-          Contact
-        </Link>
-            </li>
+          </ul>
+        </div>
+
+      {/* Social bar (large screens) */}
+      <ul className='fixed bottom-0 left-8 z-40 hidden flex-col items-center gap-5 after:mt-2 after:h-24 after:w-px after:bg-ink-muted lg:flex'>
+        {SOCIALS.map(({ label, href, icon: Icon }) => (
+          <li key={label}>
+            <a
+              href={href}
+              target={href.startsWith('mailto') ? undefined : '_blank'}
+              rel='noopener noreferrer'
+              aria-label={label}
+              title={label}
+              className='block text-xl text-ink transition hover:-translate-y-1 hover:text-accent'
+            >
+              <Icon />
+            </a>
+          </li>
+        ))}
       </ul>
+    </>
+  );
+};
 
-      {/* Social icons */}
-      <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
-        <ul>
-            <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[10px] duration-300 bg-blue-600'>
-            <a className='flex justify-between items-center w-full text-gray-300'
-            href="https://www.linkedin.com/in/jun-hwang-834951207/">
-                Linkedin <FaLinkedin size={30}/>
-            </a>
-            </li>
-            <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[10px] duration-300 bg-[#333333]'>
-            <a className='flex justify-between items-center w-full text-gray-300'
-            href="https://github.com/jhwang2525">
-                Github <FaGithub size={30}/>
-            </a>
-            </li>
-            <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[10px] duration-300 bg-[#6fc2b0]'>
-            <a className='flex justify-between items-center w-full text-gray-300'
-            href="mailto:jhwang2525@gmail.com">
-                Email <HiOutlineMail size={30}/>
-            </a>
-            </li>
-            <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[10px] duration-300 bg-[#565f69]'>
-            <a className='flex justify-between items-center w-full text-gray-300'
-            href={myFile}>
-                Resume <BsFillPersonLinesFill size={30}/>
-            </a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-export default Navbar
+export default Navbar;
