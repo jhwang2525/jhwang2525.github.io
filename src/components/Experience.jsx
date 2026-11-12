@@ -34,7 +34,7 @@ const Experience = () => {
           </ol>
 
           <div>
-            <h3 className='mb-5 font-display text-sm font-semibold tracking-wider text-ink-light'>Education</h3>
+            <h3 className='mb-5 font-display text-sm font-semibold tracking-wider text-ink-light'>Education &amp; Certifications</h3>
             <ul className='space-y-4'>
               {education.map((ed) => (
                 <li key={ed.title} className='card flex gap-4 p-5'>
