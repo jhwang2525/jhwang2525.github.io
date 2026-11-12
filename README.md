@@ -2,7 +2,7 @@
 
 Personal portfolio for Jun Hwang, Shopify developer and front-end engineer.
 
-**Live site:** https://jhwang2525.github.io/jun-portfolio/
+**Live site:** https://jhwang2525.github.io/
 
 Built with React 18, Tailwind CSS and react-scroll. Deployed to GitHub Pages.
 
