@@ -27,6 +27,7 @@ const COMMANDS = {
       ['contact', 'How to reach Jun'],
       ['resume', 'Open resume (PDF)'],
       ['hire', 'Start the hiring process'],
+      ['play', 'Jump to Dev Mode missions'],
       ['clear', 'Clear the screen'],
       ['exit', 'Close the terminal'],
     ].map(([c, d]) => ({ t: 'text', v: `  ${c.padEnd(12)} ${d}` })),
@@ -65,6 +66,10 @@ const COMMANDS = {
     { t: 'accent', v: '✔ Excellent choice.' },
     { t: 'text', v: `Email ${profile.email}, or close this terminal and use the "Get in touch" form.` },
   ],
+  play: () => {
+    setTimeout(() => document.getElementById('devmode')?.scrollIntoView({ behavior: 'smooth' }), 300);
+    return [{ t: 'accent', v: 'Launching Dev Mode… close the terminal to start your first mission.' }];
+  },
   sudo: () => [{ t: 'error', v: "Nice try. You don't need sudo to hire Jun: just type 'hire'." }],
   ls: () => [{ t: 'text', v: 'about.txt  shopify/  projects/  skills.json  resume.pdf' }],
   cat: () => COMMANDS.whoami(),

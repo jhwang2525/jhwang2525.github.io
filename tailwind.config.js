@@ -35,6 +35,10 @@ module.exports = {
         blink: {
           '50%': { opacity: '0' },
         },
+        typeIn: {
+          from: { clipPath: 'inset(0 100% 0 0)', opacity: '0.4' },
+          to: { clipPath: 'inset(0 0 0 0)', opacity: '1' },
+        },
       },
     },
   },
