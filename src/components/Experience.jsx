@@ -1,5 +1,6 @@
 import React from 'react';
 import { HiOutlineAcademicCap } from 'react-icons/hi';
+import Reveal from './Reveal';
 import { experience, education } from '../data/portfolio';
 
 const Experience = () => {
@@ -11,6 +12,7 @@ const Experience = () => {
         </h2>
 
         <div className='grid gap-12 lg:grid-cols-[1fr_320px]'>
+          <Reveal>
           <ol className='relative space-y-10 border-l border-navy-line pl-8'>
             {experience.map((job) => (
               <li key={job.title + job.company} className='relative'>
@@ -32,6 +34,7 @@ const Experience = () => {
               </li>
             ))}
           </ol>
+          </Reveal>
 
           <div>
             <h3 className='mb-5 font-display text-sm font-semibold tracking-wider text-ink-light'>Education &amp; Certifications</h3>

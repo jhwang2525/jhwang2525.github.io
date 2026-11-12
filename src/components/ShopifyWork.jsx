@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
+import Reveal from './Reveal';
 import { clientWork, moreStores } from '../data/portfolio';
 
 // Browser-window frame: shows a screenshot if one is set, otherwise a branded cover
@@ -51,7 +52,8 @@ const ShopifyWork = () => {
 
         <div className='space-y-20'>
           {clientWork.map((site, i) => (
-            <article key={site.name} className='grid items-center gap-8 lg:grid-cols-2 lg:gap-14'>
+            <Reveal key={site.name}>
+            <article className='grid items-center gap-8 lg:grid-cols-2 lg:gap-14'>
               <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
                 <BrowserFrame site={site} />
               </div>
@@ -90,6 +92,7 @@ const ShopifyWork = () => {
                 </div>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
 
