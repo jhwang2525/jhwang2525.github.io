@@ -156,8 +156,12 @@ const normalize = (s) =>
 // Any Korean (Hangul) in the message gets the side-eye dog 👀
 const HANGUL = /[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/;
 
+let sentSideEye = false; // first Korean message gets the dog, later ones get the cold shoulder
+
 export async function getReply(message) {
   if (HANGUL.test(message)) {
+    if (sentSideEye) return { text: 'I have nothing to tell you' };
+    sentSideEye = true;
     return { text: '👀', image: sideEye, imageAlt: 'Dog giving a suspicious side-eye' };
   }
 
