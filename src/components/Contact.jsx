@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineMail, HiCheck } from 'react-icons/hi';
 import { profile } from '../data/portfolio';
 
 const LINKS = [
@@ -9,7 +9,27 @@ const LINKS = [
   { label: 'LinkedIn', value: 'Jun Hwang', href: profile.linkedin, icon: FaLinkedin },
 ];
 
+const GMAIL_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${encodeURIComponent(
+  'Hello Jun'
+)}`;
+
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  // mailto only works when the visitor has an email app set up, so also copy the
+  // address and show it, so the button always does something useful
+  const handleHello = () => {
+    const done = () => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 4000);
+    };
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(profile.email).then(done, done);
+    } else {
+      done();
+    }
+  };
+
   return (
     <section id='contact' className='section bg-navy-dark'>
       <div className='container-site max-w-[960px] text-center'>
@@ -19,11 +39,23 @@ const Contact = () => {
           Need a Shopify store built, fixed or made faster, or looking for a front-end developer for your team? My
           inbox is always open and I'll get back to you soon.
         </p>
-        <a href={`mailto:${profile.email}`} className='btn-primary mt-10 !px-8 !py-4'>
-          Say hello
-        </a>
+        <div className='mt-10 flex flex-wrap items-center justify-center gap-4'>
+          <a href={`mailto:${profile.email}`} onClick={handleHello} className='btn-primary border-2 border-transparent !px-8 !py-4'>
+            Say hello
+          </a>
+          <a href={GMAIL_URL} target='_blank' rel='noopener noreferrer' className='btn-outline !px-6 !py-4'>
+            Email via Gmail
+          </a>
+        </div>
+        <p className='mt-4 h-6 text-sm text-accent' role='status' aria-live='polite'>
+          {copied && (
+            <span className='inline-flex items-center gap-1.5'>
+              <HiCheck aria-hidden='true' /> Email address copied: {profile.email}
+            </span>
+          )}
+        </p>
 
-        <ul className='mx-auto mt-14 grid max-w-[340px] gap-4 text-left md:max-w-none md:grid-cols-3'>
+        <ul className='mx-auto mt-10 grid max-w-[340px] gap-4 text-left md:max-w-none md:grid-cols-3'>
           {LINKS.map(({ label, value, href, icon: Icon }) => (
             <li key={label}>
               <a
