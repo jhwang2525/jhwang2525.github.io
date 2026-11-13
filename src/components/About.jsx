@@ -1,10 +1,30 @@
 import React from 'react';
 import { HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch } from 'react-icons/hi';
-import avatar from '../assets/jun.png';
 import Reveal from './Reveal';
-import { about, skills, services, profile } from '../data/portfolio';
+import CodeEditor from './CodeEditor';
+import { about, skills, services, profile, education } from '../data/portfolio';
 
 const SERVICE_ICONS = [HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch];
+
+const list = (items) => `[${items.map((i) => `"${i}"`).join(', ')}]`;
+
+// "About me" written as a code file (display only)
+const ABOUT_CODE = [
+  '// about-jun.js',
+  'const jun = {',
+  `  name: "${profile.name}",`,
+  `  role: "${profile.role}",`,
+  `  location: "${profile.location}",`,
+  '  experience: "Building e-commerce since 2020",',
+  `  focus: ${list(['Custom Shopify themes', 'Wholesale & B2B', 'Core Web Vitals'])},`,
+  `  stack: ${list(['Liquid', 'JavaScript', 'React', 'Tailwind', 'Node.js'])},`,
+  `  education: ${list(education.map((e) => e.title.replace('Full Stack Web Development', 'UCLA Full Stack').replace(' Specialization', '').replace('AWS Cloud Practitioner', 'AWS Cloud Practitioner (in progress)')))},`,
+  '  currently: "Growing AGA Nature on Shopify",',
+  `  openTo: ${list(['Freelance projects', 'Full-time roles'])},`,
+  '};',
+  '',
+  'export default jun;',
+].map((text) => ({ text }));
 
 const About = () => {
   return (
@@ -15,7 +35,7 @@ const About = () => {
         </h2>
 
         <Reveal>
-          <div className='grid gap-12 md:grid-cols-[1fr_280px]'>
+          <div className='grid items-start gap-10 lg:grid-cols-[1fr_1.05fr]'>
             <div className='space-y-5 text-[17px] leading-relaxed'>
               {about.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
@@ -26,19 +46,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className='mx-auto w-full max-w-[280px]'>
-              <div className='group relative'>
-                <div className='absolute inset-0 translate-x-4 translate-y-4 rounded-xl border-2 border-accent transition group-hover:translate-x-3 group-hover:translate-y-3' />
-                <img
-                  src={avatar}
-                  alt='Jun Hwang avatar'
-                  className='relative aspect-square w-full rounded-xl object-cover'
-                  width='280'
-                  height='280'
-                  loading='lazy'
-                />
-              </div>
-            </div>
+            <CodeEditor file='about-jun.js' lines={ABOUT_CODE} wrap cursor footer='JavaScript · UTF-8 · main ✓' />
           </div>
         </Reveal>
 
