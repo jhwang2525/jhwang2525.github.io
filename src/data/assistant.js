@@ -61,7 +61,7 @@ const INTENTS = [
     id: 'experience',
     keywords: ['experience', 'work', 'job', 'jobs', 'years', 'career', 'worked', 'company', 'companies', 'role'],
     reply: () => ({
-      text: `Jun has been building e-commerce since 2020. Current roles: ${experience
+      text: `Jun has been building e-commerce since 2020. Experience: ${experience
         .map((e) => `${e.title} at ${e.company.split(' · ')[0]} (${e.period})`)
         .join('; ')}.`,
       actions: [{ label: 'Experience', section: 'experience' }],
