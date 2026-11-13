@@ -80,17 +80,6 @@ export const skills = [
 export const experience = [
   {
     title: 'Shopify Developer',
-    company: 'Waycap Inc. · Los Angeles, CA',
-    period: 'Contract',
-    points: [
-      'Design, build and maintain the Waycaps Shopify stores, focused on usability and conversion.',
-      'Built retail, wholesale and B2B cart experiences with account-based pricing, tax-exempt checkout and company catalogs.',
-      'Shipped custom Liquid sections, a hat design configurator, a free sample program and a trade-show digital catalog.',
-      'Provide ongoing maintenance, SEO and performance improvements to keep the sites fast and secure.',
-    ],
-  },
-  {
-    title: 'Shopify Developer',
     company: 'AGA Nature · Freelance / Remote',
     period: '2026 – Present',
     points: [
@@ -98,19 +87,17 @@ export const experience = [
       'Developed a library of custom Liquid sections, including Our Story, Our Process, Materials, Wholesale and a monthly Color Lore series.',
       'Built a multi-step natural dye request form and a wholesale line sheet request form on Shopify contact forms.',
       'Fixed theme issues with the Section Rendering API (load more, quick add) and redesigned branded email notifications.',
-    ],
-  },
+    ],  },
   {
     title: 'Shopify Developer',
-    company: 'EDU Arts District · Los Angeles, CA',
-    period: '2025 – Present',
+    company: 'Waycap Inc. · Los Angeles, CA',
+    period: 'Contract',
     points: [
-      'Built and run the refined streetwear and headwear store on the Shopify Symmetry theme.',
-      'Created a video-led homepage with editorial collection stories for each product series.',
-      'Set up headwear shopping by crown fit and a Private Archive for early samples and one-of-one pieces.',
-      'Launch new products every few weeks and maintain the store end to end.',
-    ],
-  },
+      'Design, build and maintain the Waycaps Shopify stores, focused on usability and conversion.',
+      'Built retail, wholesale and B2B cart experiences with account-based pricing, tax-exempt checkout and company catalogs.',
+      'Shipped custom Liquid sections, a hat design configurator, a free sample program and a trade-show digital catalog.',
+      'Provide ongoing maintenance, SEO and performance improvements to keep the sites fast and secure.',
+    ],  },
   {
     title: 'Retail E-Commerce Developer & Online Marketing',
     company: 'Chalet et Ceci · Freelance / Remote',
@@ -120,19 +107,16 @@ export const experience = [
       'Designed and developed a customized, mobile-first Shopify theme with better product presentation and navigation.',
       'Implemented SEO strategies that grew organic traffic and search rankings.',
       'Ran online marketing campaigns across social media and digital ads to drive engagement and sales.',
-    ],
-  },
+    ],  },
   {
-    title: 'Retail E-Commerce Developer',
-    company: 'Afterhour · Los Angeles, CA',
-    period: '2020 – 2021',
+    title: 'Shopify Developer',
+    company: 'EDU Arts District · Los Angeles, CA',
+    period: 'Contract',
     points: [
-      'Built mobile-first, responsive storefront pages and optimized them for speed and scalability.',
-      'Developed JavaScript features that improved the shopping experience and conversion rate.',
-      'Implemented SEO best practices and used traffic analytics to grow organic traffic and revenue.',
-      'Ran new-season photoshoots, the import process and pre-orders, and launched an additional sales channel.',
-    ],
-  },
+      'Built the refined streetwear and headwear store on the Shopify Symmetry theme.',
+      'Created a video-led homepage with editorial collection stories for each product series.',
+      'Set up headwear shopping by crown fit and a Private Archive for early samples and one-of-one pieces.',
+    ],  },
 ];
 
 export const education = [
@@ -192,7 +176,7 @@ export const clientWork = [
     image: edu,
     accent: 'from-[#111111] to-[#555555]',
     summary:
-      'Refined streetwear and headwear label shipping from a Los Angeles studio. I built and run the store on the Symmetry theme.',
+      'Refined streetwear and headwear label shipping from a Los Angeles studio. I built the store on the Symmetry theme as a contract project.',
     highlights: [
       'Video-led homepage with editorial collection stories',
       'Headwear shopping by crown fit (10+, High, Mid, Low)',
