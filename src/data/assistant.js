@@ -125,14 +125,6 @@ const INTENTS = [
     }),
   },
   {
-    id: 'devmode',
-    keywords: ['play', 'game', 'try', 'interactive', 'devmode', 'mission', 'missions', 'challenge', 'fun', 'bug'],
-    reply: () => ({
-      text: `Try Dev Mode! Three short missions where you build a product card, fix real bugs and speed up a slow store. No coding needed.`,
-      actions: [{ label: 'Open Dev Mode', section: 'devmode' }],
-    }),
-  },
-  {
     id: 'thanks',
     keywords: ['thanks', 'thank', 'thx', 'cool', 'great', 'awesome', 'nice'],
     reply: () => ({ text: `You're welcome! Anything else you'd like to know about Jun?` }),
