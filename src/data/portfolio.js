@@ -79,14 +79,16 @@ export const skills = [
 
 export const experience = [
   {
-    title: 'Shopify Developer',
+    title: 'Ecommerce Web Developer & Digital Marketing Manager',
     company: 'AGA Nature · Freelance / Remote',
     period: '2026 – Present',
     points: [
-      'Built the natural dye marketplace from scratch on Shopify Horizon with an editorial, content-first design system.',
-      'Developed a library of custom Liquid sections, including Our Story, Our Process, Materials, Wholesale and a monthly Color Lore series.',
-      'Built a multi-step natural dye request form and a wholesale line sheet request form on Shopify contact forms.',
-      'Fixed theme issues with the Section Rendering API (load more, quick add) and redesigned branded email notifications.',
+      'Led the full migration of the AGA Nature website from a legacy platform to Shopify, rebuilding it with improved UX/UI and a scalable ecommerce architecture.',
+      'Designed and developed a modern, responsive storefront, customizing theme components, templates, sections and product pages with Liquid, HTML, CSS and JavaScript.',
+      'Planned site structure, navigation, collections and content to improve usability and increase conversions, and optimized performance, accessibility and on-page SEO.',
+      'Managed the domain migration and set up Google Analytics, Search Console, Merchant Center and technical SEO for a seamless launch.',
+      'Run digital marketing (Google Ads, email, content and SEO), creating landing pages and campaign assets for product launches and seasonal promotions.',
+      'Continue to manage, maintain and optimize the store, using analytics to drive customer acquisition, brand growth and ecommerce revenue.',
     ],
   },
   {
@@ -163,7 +165,7 @@ export const clientWork = [
     image: aganature,
     accent: 'from-[#8F533F] to-[#c9a27e]',
     summary:
-      'Natural dye marketplace and studio. Built from scratch on Shopify Horizon with an editorial, content-first design system.',
+      'Natural dye marketplace and studio. I led the migration from a legacy platform to Shopify, rebuilding it on Horizon with an editorial, content-first design, and I manage the store and its digital marketing.',
     highlights: [
       'Editorial section library: Our Story, Process, Materials, Color Lore and more',
       'Multi-step natural dye request form built on Shopify contact forms',
