@@ -87,7 +87,8 @@ export const experience = [
       'Developed a library of custom Liquid sections, including Our Story, Our Process, Materials, Wholesale and a monthly Color Lore series.',
       'Built a multi-step natural dye request form and a wholesale line sheet request form on Shopify contact forms.',
       'Fixed theme issues with the Section Rendering API (load more, quick add) and redesigned branded email notifications.',
-    ],  },
+    ],
+  },
   {
     title: 'Shopify Developer',
     company: 'Waycap Inc. · Los Angeles, CA',
@@ -97,7 +98,8 @@ export const experience = [
       'Built retail, wholesale and B2B cart experiences with account-based pricing, tax-exempt checkout and company catalogs.',
       'Shipped custom Liquid sections, a hat design configurator, a free sample program and a trade-show digital catalog.',
       'Provide ongoing maintenance, SEO and performance improvements to keep the sites fast and secure.',
-    ],  },
+    ],
+  },
   {
     title: 'Retail E-Commerce Developer & Online Marketing',
     company: 'Chalet et Ceci · Freelance / Remote',
@@ -107,7 +109,8 @@ export const experience = [
       'Designed and developed a customized, mobile-first Shopify theme with better product presentation and navigation.',
       'Implemented SEO strategies that grew organic traffic and search rankings.',
       'Ran online marketing campaigns across social media and digital ads to drive engagement and sales.',
-    ],  },
+    ],
+  },
   {
     title: 'Shopify Developer',
     company: 'EDU Arts District · Los Angeles, CA',
@@ -116,7 +119,8 @@ export const experience = [
       'Built the refined streetwear and headwear store on the Shopify Symmetry theme.',
       'Created a video-led homepage with editorial collection stories for each product series.',
       'Set up headwear shopping by crown fit and a Private Archive for early samples and one-of-one pieces.',
-    ],  },
+    ],
+  },
 ];
 
 export const education = [
