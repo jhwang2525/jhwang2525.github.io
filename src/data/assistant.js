@@ -79,7 +79,7 @@ const INTENTS = [
     id: 'hire',
     keywords: ['hire', 'hiring', 'available', 'availability', 'open', 'full-time', 'fulltime', 'freelance', 'contract', 'job', 'position', 'opportunity', 'recruiter'],
     reply: () => ({
-      text: `Yes, Jun is ${profile.availability.toLowerCase()}. The fastest way to reach him is the contact form below, which drafts the email for you.`,
+      text: `Yes, Jun is ${profile.availability.toLowerCase()}. The fastest way to reach him is by email or LinkedIn. You'll find both in the Get in touch section.`,
       actions: [
         { label: 'Contact Jun', section: 'contact' },
         { label: 'Download resume', resume: true },
@@ -113,8 +113,8 @@ const INTENTS = [
     id: 'pricing',
     keywords: ['price', 'pricing', 'rate', 'rates', 'cost', 'budget', 'quote', 'charge', 'how much'],
     reply: () => ({
-      text: `Pricing depends on scope. Use the "Start a project" form below: pick what you need, your budget and timeline, and Jun will reply with a quote.`,
-      actions: [{ label: 'Start a project', section: 'contact' }],
+      text: `Pricing depends on scope. Email Jun at ${profile.email} with what you need, your budget and timeline, and he'll reply with a quote.`,
+      actions: [{ label: 'Email Jun', href: `mailto:${profile.email}` }],
     }),
   },
   {
