@@ -53,6 +53,10 @@ export const services = [
     text: 'Fast, accessible, responsive interfaces in JavaScript and React, with attention to Core Web Vitals and clean, maintainable code.',
   },
   {
+    title: 'Ecommerce Marketing',
+    text: 'Google Ads and Meta ads campaigns, tracking set up in Google Analytics and Meta Events Manager, Merchant Center product feeds and Search Console SEO.',
+  },
+  {
     title: 'UX & UI Design',
     text: 'Research, wireframes and polished UI in Figma, then built pixel-accurate so the design and the shipped product match.',
   },
@@ -70,6 +74,10 @@ export const skills = [
   {
     group: 'Back-End',
     items: ['Node.js', 'Express', 'MySQL & Sequelize', 'MongoDB & Mongoose', 'GraphQL & Apollo', 'REST APIs'],
+  },
+  {
+    group: 'Marketing & Analytics',
+    items: ['Google Ads', 'Google Analytics', 'Google Search Console', 'Google Merchant Center', 'Meta Ads Manager', 'Meta Events Manager'],
   },
   {
     group: 'Design & Tools',

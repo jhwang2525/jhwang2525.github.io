@@ -1,10 +1,10 @@
 import React from 'react';
-import { HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch } from 'react-icons/hi';
+import { HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch, HiOutlineChartBar } from 'react-icons/hi';
 import Reveal from './Reveal';
 import CodeEditor from './CodeEditor';
 import { about, skills, services, profile, education } from '../data/portfolio';
 
-const SERVICE_ICONS = [HiOutlineShoppingBag, HiOutlineCode, HiOutlineColorSwatch];
+const SERVICE_ICONS = [HiOutlineShoppingBag, HiOutlineCode, HiOutlineChartBar, HiOutlineColorSwatch];
 
 const list = (items) => `[${items.map((i) => `"${i}"`).join(', ')}]`;
 
@@ -18,6 +18,7 @@ const ABOUT_CODE = [
   '  experience: "Building e-commerce since 2020",',
   `  focus: ${list(['Custom Shopify themes', 'Wholesale & B2B', 'Core Web Vitals'])},`,
   `  stack: ${list(['Liquid', 'JavaScript', 'React', 'Tailwind', 'Node.js'])},`,
+  `  marketing: ${list(['Google Ads', 'GA4', 'Search Console', 'Merchant Center', 'Meta Ads'])},`,
   `  education: ${list(education.map((e) => e.title.replace('Full Stack Web Development', 'UCLA Full Stack').replace(' Specialization', '').replace('AWS Cloud Practitioner', 'AWS Cloud Practitioner (in progress)')))},`,
   '  currently: "Growing AGA Nature on Shopify",',
   `  openTo: ${list(['Freelance projects', 'Full-time roles'])},`,
@@ -51,7 +52,7 @@ const About = () => {
         </Reveal>
 
         <h3 className='mb-6 mt-20 font-display text-sm font-semibold tracking-wider text-ink-light'>What I do</h3>
-        <div className='grid gap-6 md:grid-cols-3'>
+        <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
           {services.map((s, i) => {
             const Icon = SERVICE_ICONS[i % SERVICE_ICONS.length];
             return (
@@ -69,7 +70,7 @@ const About = () => {
         </div>
 
         <h3 className='mb-6 mt-20 font-display text-sm font-semibold tracking-wider text-ink-light'>Tech I work with</h3>
-        <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+        <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-5'>
           {skills.map((group, i) => (
             <Reveal key={group.group} delay={i * 80}>
               <div className='card h-full p-6 hover:border-accent/50'>
