@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { HiOutlineMail, HiCheck, HiOutlineClipboardCopy } from 'react-icons/hi';
-import resume from '../assets/resume.pdf';
+import { HiOutlineMail, HiX } from 'react-icons/hi';
 import { profile } from '../data/portfolio';
+import sideEye from '../assets/side-eye.jpg';
+import happyCat from '../assets/happy-cat.mp4';
 
 const LINKS = [
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, icon: HiOutlineMail },
@@ -10,275 +11,130 @@ const LINKS = [
   { label: 'LinkedIn', value: 'Jun Hwang', href: profile.linkedin, icon: FaLinkedin },
 ];
 
-const PROJECT_TYPES = [
-  'New Shopify store',
-  'Theme redesign',
-  'Custom sections / features',
-  'Speed & Core Web Vitals',
-  'Wholesale / B2B setup',
-  'Store migration',
-  'React / web app',
-  'Something else',
-];
-const BUDGETS = ['Under $1k', '$1k – $3k', '$3k – $7k', '$7k+', 'Not sure yet'];
-const TIMELINES = ['ASAP', 'Within a month', '1–3 months', 'Flexible'];
-const ROLE_TYPES = ['Full-time', 'Contract', 'Part-time', 'Freelance'];
+const CAT_SECONDS = 5;
 
-const Chip = ({ active, onClick, children }) => (
-  <button
-    type='button'
-    onClick={onClick}
-    aria-pressed={active}
-    className={`rounded-full border px-3.5 py-1.5 text-sm transition ${
-      active ? 'border-accent bg-accent text-navy' : 'border-navy-line text-ink hover:border-accent hover:text-accent'
-    }`}
-  >
-    {children}
-  </button>
-);
+// Pop-up that asks the visitor a question, then reacts to the answer
+const HelloModal = ({ onClose }) => {
+  const [answer, setAnswer] = useState(null); // null | 'yes' | 'no'
+  const videoRef = useRef(null);
 
-const Field = ({ label, children }) => (
-  <label className='block'>
-    <span className='mb-1.5 block text-xs font-medium text-ink-muted'>{label}</span>
-    {children}
-  </label>
-);
+  // Close with Esc
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
-const inputClass =
-  'w-full rounded-lg border border-navy-line bg-navy px-3 py-2.5 text-sm text-ink-light placeholder:text-ink-muted focus:border-accent focus:outline-none';
+  // "Yes" plays the happy cat, then closes on its own
+  useEffect(() => {
+    if (answer !== 'yes') return undefined;
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {
+        // Some browsers block sound: play muted instead
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
+    const timer = setTimeout(onClose, CAT_SECONDS * 1000);
+    return () => clearTimeout(timer);
+  }, [answer, onClose]);
 
-const Question = ({ children, hint }) => (
-  <p className='mb-3 text-sm font-semibold text-ink-light'>
-    {children} {hint && <span className='font-normal text-ink-muted'>{hint}</span>}
-  </p>
-);
+  return (
+    <div
+      className='fixed inset-0 z-[80] grid place-items-center bg-black/70 p-4 backdrop-blur-sm'
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div
+        className='relative w-[min(420px,100%)] animate-[fadeIn_0.25s_ease-out] overflow-hidden rounded-2xl border border-navy-line bg-navy-dark text-center shadow-2xl shadow-black/60'
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='hello-title'
+      >
+        <button
+          type='button'
+          onClick={onClose}
+          className='absolute right-3 top-3 z-10 rounded-md p-1.5 text-xl text-ink transition hover:bg-navy-card hover:text-ink-light'
+          aria-label='Close'
+        >
+          <HiX />
+        </button>
+
+        {answer === null && (
+          <div className='px-8 pb-8 pt-10'>
+            <p className='text-5xl' aria-hidden='true'>
+              🤔
+            </p>
+            <h3 id='hello-title' className='mt-4 font-display text-xl font-bold text-ink-light'>
+              Quick question…
+            </h3>
+            <p className='mt-3 text-lg text-ink'>Did you like the portfolio? Will you hire Jun?</p>
+            <div className='mt-8 grid grid-cols-2 gap-3'>
+              <button type='button' onClick={() => setAnswer('yes')} className='btn-primary border-2 border-transparent !py-3.5'>
+                Yes! 🎉
+              </button>
+              <button type='button' onClick={() => setAnswer('no')} className='btn-outline !py-3.5'>
+                No
+              </button>
+            </div>
+          </div>
+        )}
+
+        {answer === 'no' && (
+          <div className='px-6 pb-7 pt-12'>
+            <img src={sideEye} alt='Dog giving a suspicious side-eye' className='w-full rounded-xl' />
+            <h3 id='hello-title' className='mt-5 font-display text-lg font-bold text-ink-light'>
+              Are you sure about that? 👀
+            </h3>
+            <button type='button' onClick={() => setAnswer(null)} className='link-subtle mt-4'>
+              Let me answer again
+            </button>
+          </div>
+        )}
+
+        {answer === 'yes' && (
+          <div>
+            <h3 id='hello-title' className='sr-only'>
+              Yay!
+            </h3>
+            <video
+              ref={videoRef}
+              src={happyCat}
+              playsInline
+              className='mx-auto block max-h-[70vh] w-full object-contain'
+              aria-label='Happy dancing cat'
+            />
+            <p className='px-6 pb-1 font-display text-lg font-bold text-accent'>Yay! Let's talk 🎉</p>
+            <p className='px-6 pb-4 text-sm text-ink'>{profile.email}</p>
+            <div className='h-1 w-full bg-navy-line'>
+              <div className='h-full animate-[shrink_5s_linear_forwards] bg-accent' />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Contact = () => {
-  const [tab, setTab] = useState('client');
-  const [client, setClient] = useState({ types: [], budget: '', timeline: '', name: '', website: '', details: '' });
-  const [hiring, setHiring] = useState({ role: 'Full-time', company: '', name: '', position: '', details: '' });
-  const [copied, setCopied] = useState(false);
-
-  const setC = (key) => (e) => setClient((c) => ({ ...c, [key]: e.target.value }));
-  const setH = (key) => (e) => setHiring((h) => ({ ...h, [key]: e.target.value }));
-  const toggleType = (t) =>
-    setClient((c) => ({ ...c, types: c.types.includes(t) ? c.types.filter((x) => x !== t) : [...c.types, t] }));
-
-  // Draft the email from the answers
-  const email = useMemo(() => {
-    if (tab === 'client') {
-      const subject = `Project inquiry: ${client.types[0] || 'Shopify project'}${client.name ? ` from ${client.name}` : ''}`;
-      const lines = [
-        'Hi Jun,',
-        '',
-        "I'd like to talk about a project.",
-        '',
-        `What I need: ${client.types.join(', ') || '(not specified)'}`,
-        `Budget: ${client.budget || '(not specified)'}`,
-        `Timeline: ${client.timeline || '(not specified)'}`,
-      ];
-      if (client.website) lines.push(`Current website: ${client.website}`);
-      lines.push('', client.details || '(add any details here)', '', 'Thanks,', client.name);
-      return { subject, body: lines.join('\n') };
-    }
-    const subject = `${hiring.role} opportunity${hiring.company ? ` at ${hiring.company}` : ''}${
-      hiring.position ? `: ${hiring.position}` : ''
-    }`;
-    const body = [
-      'Hi Jun,',
-      '',
-      `I came across your portfolio and would like to talk about a ${hiring.role.toLowerCase()} ${
-        hiring.position || 'role'
-      }${hiring.company ? ` at ${hiring.company}` : ''}.`,
-      '',
-      hiring.details || '(add any details here)',
-      '',
-      'Best,',
-      hiring.name,
-    ].join('\n');
-    return { subject, body };
-  }, [tab, client, hiring]);
-
-  const enc = encodeURIComponent;
-  const mailto = `mailto:${profile.email}?subject=${enc(email.subject)}&body=${enc(email.body)}`;
-  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${enc(email.subject)}&body=${enc(
-    email.body
-  )}`;
-
-  const copy = () => {
-    const done = () => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    };
-    const text = `To: ${profile.email}\nSubject: ${email.subject}\n\n${email.body}`;
-    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(done, done);
-    else done();
-  };
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
 
   return (
     <section id='contact' className='section bg-navy-dark'>
-      <div className='container-site max-w-[960px]'>
-        <div className='text-center'>
-          <p className='font-display text-sm tracking-widest text-accent'>06. What's next?</p>
-          <h2 className='mt-4 font-display text-4xl font-bold text-ink-light sm:text-5xl'>Get in touch</h2>
-          <p className='mx-auto mt-6 max-w-[560px] text-lg leading-relaxed'>
-            Tell me a little about what you need and I'll draft the email for you. It takes about 30 seconds.
-          </p>
-        </div>
+      <div className='container-site max-w-[960px] text-center'>
+        <p className='font-display text-sm tracking-widest text-accent'>06. What's next?</p>
+        <h2 className='mt-4 font-display text-4xl font-bold text-ink-light sm:text-5xl'>Get in touch</h2>
+        <p className='mx-auto mt-6 max-w-[560px] text-lg leading-relaxed'>
+          Need a Shopify store built, fixed or made faster, or looking for a front-end developer for your team? My
+          inbox is always open and I'll get back to you soon.
+        </p>
+        <button type='button' onClick={() => setOpen(true)} className='btn-primary mt-10 !px-10 !py-4'>
+          Say hello
+        </button>
 
-        <div className='card mt-10 overflow-hidden'>
-          <div className='grid grid-cols-2 border-b border-navy-line' role='tablist' aria-label='Contact type'>
-            {[
-              ['client', 'Start a project'],
-              ['hiring', "I'm hiring"],
-            ].map(([id, label]) => (
-              <button
-                key={id}
-                type='button'
-                role='tab'
-                aria-selected={tab === id}
-                onClick={() => setTab(id)}
-                className={`py-4 font-display text-sm tracking-wider transition ${
-                  tab === id ? 'bg-navy-card text-accent shadow-[inset_0_-2px_0_#3bba9c]' : 'text-ink hover:text-ink-light'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <div className='grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.2fr_1fr]'>
-            <div className='space-y-6' role='tabpanel'>
-              {tab === 'client' ? (
-                <>
-                  <div>
-                    <Question hint='(pick any)'>1. What do you need?</Question>
-                    <div className='flex flex-wrap gap-2'>
-                      {PROJECT_TYPES.map((t) => (
-                        <Chip key={t} active={client.types.includes(t)} onClick={() => toggleType(t)}>
-                          {t}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <Question>2. Budget</Question>
-                    <div className='flex flex-wrap gap-2'>
-                      {BUDGETS.map((b) => (
-                        <Chip key={b} active={client.budget === b} onClick={() => setClient((c) => ({ ...c, budget: b }))}>
-                          {b}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <Question>3. Timeline</Question>
-                    <div className='flex flex-wrap gap-2'>
-                      {TIMELINES.map((t) => (
-                        <Chip
-                          key={t}
-                          active={client.timeline === t}
-                          onClick={() => setClient((c) => ({ ...c, timeline: t }))}
-                        >
-                          {t}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                  <div className='grid gap-4 sm:grid-cols-2'>
-                    <Field label='Your name'>
-                      <input className={inputClass} value={client.name} onChange={setC('name')} placeholder='Jane Doe' />
-                    </Field>
-                    <Field label='Current website (optional)'>
-                      <input className={inputClass} value={client.website} onChange={setC('website')} placeholder='yourstore.com' />
-                    </Field>
-                  </div>
-                  <Field label='Anything else?'>
-                    <textarea
-                      rows={3}
-                      className={inputClass}
-                      value={client.details}
-                      onChange={setC('details')}
-                      placeholder='Goals, links, features you have in mind…'
-                    />
-                  </Field>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <Question>Type of role</Question>
-                    <div className='flex flex-wrap gap-2'>
-                      {ROLE_TYPES.map((r) => (
-                        <Chip key={r} active={hiring.role === r} onClick={() => setHiring((h) => ({ ...h, role: r }))}>
-                          {r}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                  <div className='grid gap-4 sm:grid-cols-2'>
-                    <Field label='Your name'>
-                      <input className={inputClass} value={hiring.name} onChange={setH('name')} placeholder='Alex Kim' />
-                    </Field>
-                    <Field label='Company'>
-                      <input className={inputClass} value={hiring.company} onChange={setH('company')} placeholder='Acme Inc.' />
-                    </Field>
-                  </div>
-                  <Field label='Position'>
-                    <input
-                      className={inputClass}
-                      value={hiring.position}
-                      onChange={setH('position')}
-                      placeholder='Front-End Developer'
-                    />
-                  </Field>
-                  <Field label='Message (optional)'>
-                    <textarea
-                      rows={4}
-                      className={inputClass}
-                      value={hiring.details}
-                      onChange={setH('details')}
-                      placeholder='Team, stack, location or a link to the job post…'
-                    />
-                  </Field>
-                  <a href={resume} target='_blank' rel='noopener noreferrer' className='link-subtle'>
-                    Download Jun's resume (PDF) →
-                  </a>
-                </>
-              )}
-            </div>
-
-            {/* Live email preview */}
-            <div className='flex flex-col'>
-              <p className='mb-3 text-sm font-semibold text-ink-light'>Your email preview</p>
-              <div className='flex-1 rounded-lg border border-navy-line bg-navy p-4 font-mono text-xs leading-relaxed text-ink'>
-                <p className='text-ink-muted'>To: {profile.email}</p>
-                <p className='mb-3 border-b border-navy-line pb-3 text-ink-light'>Subject: {email.subject}</p>
-                <p className='max-h-56 overflow-y-auto whitespace-pre-wrap'>{email.body}</p>
-              </div>
-              <div className='mt-4 grid gap-2 sm:grid-cols-2'>
-                <a href={gmail} target='_blank' rel='noopener noreferrer' className='btn-primary border-2 border-transparent !py-3'>
-                  Send with Gmail
-                </a>
-                <a href={mailto} className='btn-outline !py-3'>
-                  Open mail app
-                </a>
-              </div>
-              <button type='button' onClick={copy} className='link-subtle mt-3 justify-center' aria-live='polite'>
-                {copied ? (
-                  <>
-                    <HiCheck aria-hidden='true' /> Copied to clipboard
-                  </>
-                ) : (
-                  <>
-                    <HiOutlineClipboardCopy aria-hidden='true' /> Copy email text instead
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <ul className='mx-auto mt-10 grid max-w-[340px] gap-4 text-left md:max-w-none md:grid-cols-3'>
+        <ul className='mx-auto mt-14 grid max-w-[340px] gap-4 text-left md:max-w-none md:grid-cols-3'>
           {LINKS.map(({ label, value, href, icon: Icon }) => (
             <li key={label}>
               <a
@@ -297,6 +153,8 @@ const Contact = () => {
           ))}
         </ul>
       </div>
+
+      {open && <HelloModal onClose={close} />}
     </section>
   );
 };
