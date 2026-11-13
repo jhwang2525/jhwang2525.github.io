@@ -90,6 +90,28 @@ export const experience = [
     ],
   },
   {
+    title: 'Shopify Developer',
+    company: 'AGA Nature · Freelance / Remote',
+    period: '2026 – Present',
+    points: [
+      'Built the natural dye marketplace from scratch on Shopify Horizon with an editorial, content-first design system.',
+      'Developed a library of custom Liquid sections, including Our Story, Our Process, Materials, Wholesale and a monthly Color Lore series.',
+      'Built a multi-step natural dye request form and a wholesale line sheet request form on Shopify contact forms.',
+      'Fixed theme issues with the Section Rendering API (load more, quick add) and redesigned branded email notifications.',
+    ],
+  },
+  {
+    title: 'Shopify Developer',
+    company: 'EDU Arts District · Los Angeles, CA',
+    period: '2025 – Present',
+    points: [
+      'Built and run the refined streetwear and headwear store on the Shopify Symmetry theme.',
+      'Created a video-led homepage with editorial collection stories for each product series.',
+      'Set up headwear shopping by crown fit and a Private Archive for early samples and one-of-one pieces.',
+      'Launch new products every few weeks and maintain the store end to end.',
+    ],
+  },
+  {
     title: 'Retail E-Commerce Developer & Online Marketing',
     company: 'Chalet et Ceci · Freelance / Remote',
     period: '2023 – Present',
@@ -103,7 +125,7 @@ export const experience = [
   {
     title: 'Retail E-Commerce Developer',
     company: 'Afterhour · Los Angeles, CA',
-    period: '2020 – Present',
+    period: '2020 – 2021',
     points: [
       'Built mobile-first, responsive storefront pages and optimized them for speed and scalability.',
       'Developed JavaScript features that improved the shopping experience and conversion rate.',
