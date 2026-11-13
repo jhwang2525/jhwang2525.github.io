@@ -11,7 +11,6 @@ const NAV_ITEMS = [
   { id: 'experience', label: 'Experience' },
   { id: 'work', label: 'Shopify Work' },
   { id: 'projects', label: 'Projects' },
-  { id: 'devmode', label: 'Dev Mode' },
   { id: 'contact', label: 'Contact' },
 ];
 
